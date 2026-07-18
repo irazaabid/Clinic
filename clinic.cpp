@@ -222,6 +222,7 @@ int getChoice()
     std::cout << "4. Get Staff Information" << std::endl;
     std::cout << "5. Add Medicine" << std::endl;
     std::cout << "6. Get Medicine Information" << std::endl;
+    std::cout << "7. Exit" << std::endl;
     std::cin >> choice;
     return choice;
 }
@@ -260,6 +261,11 @@ int main()
     do
     {
         choice = getChoice();
+        if (choice > 7 || choice < 1)
+        {
+            std::cout << "Invalid Choice";
+            continue;
+        }
 
         if (choice == 1)
         {
@@ -298,6 +304,10 @@ int main()
             std::cin >> c;
             if (c == 1)
                 medicineDatabase[0].displayInformation();
+        }
+        else if (choice == 7)
+        {
+            break;
         }
     } while (1);
     return 0;
