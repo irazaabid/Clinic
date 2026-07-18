@@ -229,7 +229,7 @@ void searchPatient(std::string cnic)
 {
     char found = 'n';
 
-    std::ifstream in("clinic.txt", std::ios::in);
+    std::ifstream in("patient.txt", std::ios::in);
     if (!in.is_open())
     {
         std::cout << "Error: Could not open clinic database file." << std::endl;
