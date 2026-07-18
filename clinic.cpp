@@ -155,7 +155,7 @@ void addPatient()
     std::cout << "Prescrition: " << std::endl;
     std::getline(std::cin, prescription);
     Patient p1(name, age, sex, cnic, medicalHistory, prescription);
-    std::ofstream out("clinic.txt", std::ios::app);
+    std::ofstream out("patient.txt", std::ios::app);
     if (out.is_open())
     {
         p1.saveToFile(out);
