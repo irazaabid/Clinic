@@ -258,6 +258,7 @@ int main()
     std::vector<Staff> staffDatabase;
     std::vector<Medicine> medicineDatabase;
     int choice;
+    bool loop = true;
     do
     {
         choice = getChoice();
@@ -266,50 +267,61 @@ int main()
             std::cout << "Invalid Choice";
             continue;
         }
+        switch (choice)
+        {
 
-        if (choice == 1)
+        case 1:
         {
             addPatient();
-            continue;
+            break;
         }
-        else if (choice == 2)
+        case 2:
         {
             std::string cnic;
             std::cout << "Enter Patient CNIC: " << std::endl;
             std::cin >> cnic;
             searchPatient(cnic);
+            break;
         }
-        else if (choice == 3)
+        case 3:
         {
             addStaff(staffDatabase);
-            continue;
+            break;
         }
-        else if (choice == 4)
+        case 4:
         {
             int c;
             std::cout << "Enter Staff NO: " << std::endl;
             std::cin >> c;
             if (c == 1)
                 staffDatabase[0].displayInformation();
+            break;
         }
-        else if (choice == 5)
+        case 5:
         {
             addMedicine(medicineDatabase);
-            continue;
+            break;
         }
-        else if (choice == 6)
+        case 6:
         {
             int c;
             std::cout << "Enter Medicine NO: " << std::endl;
             std::cin >> c;
             if (c == 1)
                 medicineDatabase[0].displayInformation();
-        }
-        else if (choice == 7)
-        {
-            std::cout << "\nExiting....\n";
             break;
         }
-    } while (1);
+        case 7:
+        {
+            std::cout << "\nExiting....\n";
+            loop = false;
+            break;
+        }
+        default:
+        {
+            std::cout << "UNKNOWN ERROR" << std::endl;
+        }
+        }
+    } while (loop);
     return 0;
 }
