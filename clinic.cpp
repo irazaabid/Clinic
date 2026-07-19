@@ -118,6 +118,29 @@ public:
         std::cout << "Salary: " << salary << std::endl;
         std::cout << "Shift Time: " << shiftTime << std::endl;
     }
+    void saveToFile(std::ofstream &out)
+    {
+        out << name << "\n"
+            << role << "\n"
+            << salary << "\n"
+            << shiftTime << "\n";
+    }
+    bool loadFromFile(std::ifstream &in)
+    {
+        if (!std::getline(in, name))
+            return false;
+        if (!std::getline(in, role))
+            return false;
+        std::string salaryStr;
+        if (!std::getline(in, salaryStr))
+            return false;
+        salary = std::stod(salaryStr);
+
+        if (!std::getline(in, shiftTime))
+            return false;
+
+        return true;
+    }
 };
 // Patient Details
 void addPatient()
@@ -167,7 +190,7 @@ void addPatient()
         std::cout << "Error opening file!" << std::endl;
     }
 }
-void addStaff(std::vector<Staff> &database)
+void addStaff()
 {
     std::string name;
     std::string role;
@@ -185,8 +208,17 @@ void addStaff(std::vector<Staff> &database)
     std::cin.ignore();
     std::getline(std::cin, shiftTime);
     Staff s1(name, role, salary, shiftTime);
-    database.push_back(s1);
-    std::cout << "\nStaff Added Successfully" << std::endl;
+    std::ofstream out("staff.txt", std::ios::app);
+    if (out.is_open())
+    {
+        s1.saveToFile(out);
+        out.close();
+        std::cout << "\nStaff Added Successfully" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error opening file!" << std::endl;
+    }
 }
 void addMedicine(std::vector<Medicine> &database)
 {
@@ -285,7 +317,7 @@ int main()
         }
         case 3:
         {
-            addStaff(staffDatabase);
+            addStaff();
             break;
         }
         case 4:
