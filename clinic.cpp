@@ -307,6 +307,7 @@ int main()
         }
         else if (choice == 7)
         {
+            std::cout << "\nExiting....\n";
             break;
         }
     } while (1);
